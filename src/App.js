@@ -6,6 +6,9 @@ import Checkout from './Checkout';
 import Login from './Login';
 
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Register from './Register';
+import BlogHome from './BlogHome';
+import Blog from './Blog';
 
 function App() {
   return (
@@ -13,6 +16,15 @@ function App() {
     <Router>
     <div className="app">
       <Switch>
+        <Route path='/blogHome'>
+          <BlogHome/>
+        </Route>
+        <Route path='/blog/:id'>
+          <Blog/>
+        </Route>
+        <Route path='/register'>
+          <Register/>
+        </Route>
         <Route path='/login'>
           <Login/>
         </Route>
