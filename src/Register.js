@@ -53,8 +53,9 @@ function Register() {
                 <h1>Register</h1>
 
                 <form className="register__form" onSubmit={handleSubmit}> 
-                    <h5>Register as:</h5>
-                    <div className='register__radioButton'>             
+                    
+                    <div className='register__radioButton'>       
+                        <h5>Register as:</h5>      
                         <input type='radio' name="type" value="Buyer" onChange={e => setType(e.target.value)}/>
                         <p>Buyer</p> 
                         <input type='radio' name="type" value="Seller" onChange={e => setType(e.target.value)}/>

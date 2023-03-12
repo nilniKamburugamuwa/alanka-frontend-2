@@ -2,14 +2,17 @@
     max-width: 700px;
     margin: 0 auto;
   }
-  
+
   .blog-goBack {
     text-decoration: none;
     font-size: 0.8rem;
-    color: #a9a9a9;
+    color: black;
     font-weight: 500;
     margin-bottom: 2rem;
     display: block;
+    background-color: #cd9042;
+    width: fit-content;
+    padding: 5px;
   }
   .blog-wrap header {
     text-align: center;

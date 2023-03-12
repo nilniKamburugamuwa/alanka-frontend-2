@@ -30,7 +30,7 @@ const BlogHome = () => {
   };
 
   return (
-    <div>
+    <div className='blogHome'>
 
       {/* Search Bar */}
       <BlogSearchBar
@@ -41,6 +41,7 @@ const BlogHome = () => {
       />
 
       {/* Blog List & Empty View */}
+      <div className='blogHome__grid'></div>
       {!blogs.length ? <EmptyBlogList /> : <BlogList blogs={blogs} />}
     </div>
   );

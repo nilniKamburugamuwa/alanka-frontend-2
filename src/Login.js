@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import './Login.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 function Login() {
-
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const signIn = e => {
         e.preventDefault();
+        
     }
 
     const register = e => {
         e.preventDefault();
+        history.push('/register')
     }
 
     return (

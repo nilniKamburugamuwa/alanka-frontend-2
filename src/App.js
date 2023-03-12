@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Header from './Header';
 import Home from './Home';
@@ -11,6 +11,12 @@ import BlogHome from './BlogHome';
 import Blog from './Blog';
 
 function App() {
+
+  useEffect(() => {
+    //only runs once when app component loads
+    
+  }, [])
+
   return (
     //BEM
     <Router>

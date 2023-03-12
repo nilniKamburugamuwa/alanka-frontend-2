@@ -16,12 +16,14 @@ const BlogItem = ({
   },
 }) => {
   return (
-    <div className='blogItem-wrap'>
+    <div className='blogItem'>
       <img className='blogItem-cover' src={cover} alt='cover' />
       <Chip label={category} />
-      <h3>{title}</h3>
+      <Link className='blogItem-wrap' to={`/blog/${id}`}>
+        <h3>{title}</h3>
+      </Link>
       <p className='blogItem-desc'>{description}</p>
-      <footer>
+      {/*<footer>
         <div className='blogItem-author'>
           <img src={authorAvatar} alt='avatar' />
           <div>
@@ -32,7 +34,7 @@ const BlogItem = ({
         <Link className='blogItem-link' to={`/blog/${id}`}>
           ➝
         </Link>
-      </footer>
+      </footer>*/}
     </div>
   );
 };
