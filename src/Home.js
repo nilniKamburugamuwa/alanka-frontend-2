@@ -1,4 +1,5 @@
 import React from 'react'
+import CategoryList from './CategoryList'
 import "./Home.css"
 import Product from './Product'
 
@@ -7,7 +8,7 @@ function Home() {
     <div className='home'>
         <div className='home__container'>
             <img className='home__image' src='https://m.media-amazon.com/images/I/61Ly9zlsGxL._SX1500_.jpg'/>
-            
+            <CategoryList/>
             <div className="home__row">
                 <Product id={12365} title = 'Lean startup' price={29.99} image = 'https://th.bing.com/th/id/R.9de82ef2da08008a74aa3afbec9f3cf9?rik=zaas85eGaea9BQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-T-d3JPMr-Uk%2fUPshLuidy6I%2fAAAAAAAAFbU%2fvOiHd0qgnC4%2fs1600%2flean-startup_book-cover.jpeg&ehk=O90jlIAsVo0HEm3VJD7I%2b0%2fbWRp8HxsmQwJdugopPLU%3d&risl=&pid=ImgRaw&r=0' rating = {5} />
                 <Product id={12355} title = 'Wholesale Frosted Glass Bottle Skincare Packaging Silver Skin Care' price={19.99} image = 'https://th.bing.com/th/id/OIP.kDGQxyQuX_uLGWm8vhfO8gHaHa?pid=ImgDet&rs=1' rating = {3} />

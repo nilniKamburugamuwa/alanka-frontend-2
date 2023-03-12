@@ -35,7 +35,7 @@ function Header() {
 
           <Link to='/blogHome'>
             <div className='header__option'>
-              <span className='header__optionLineOne'>Our</span>
+              <span className='header__optionLineOne'>Alanka</span>
               <span className='header__optionLineTwo'>Blog</span>
             </div>
           </Link>

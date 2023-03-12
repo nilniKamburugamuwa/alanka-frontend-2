@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 const BlogSearchBar = ({ formSubmit, value, handleSearchKey, clearSearch }) => (
 
   <div className='blogSearchBar'>
-    <h2 className='blogSearchBar__logo'>Alanka Blog</h2>
+    <Link className='blogSearchBar__logo' to='/blogHome'>
+      <h2>Alanka Blog</h2>
+    </Link>
     <form className='blogSearchBar__search' onSubmit={formSubmit}>
       <input
         className='blogSearchBar__input'
