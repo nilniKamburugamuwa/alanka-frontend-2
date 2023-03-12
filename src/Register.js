@@ -22,7 +22,7 @@ function Register() {
         event.preventDefault();
 
         try{
-            await axios.post("http://localhost:8082/api/users/save",{
+            await axios.post("http://localhost:8082/api/user/save",{
                 firstName: firstName,
                 lastName : lastName,
                 email: email,

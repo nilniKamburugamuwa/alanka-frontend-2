@@ -7,6 +7,18 @@ import './Blog.css';
 import { Link } from 'react-router-dom';
 import BlogSearchBar from './BlogSearchBar';
 
+import axios from 'axios';
+
+const usersUrl = 'http://localhost:8082/api/users';
+
+export const getAllUsers = async () => {
+    try{
+        return await axios.get(`${usersUrl}/getAll`);
+    } catch(error){
+        console.log('Error while calling getUsers api', error);
+    }
+}
+
 const Blog = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);

@@ -7,9 +7,9 @@ const BlogItem = ({
   blog: {
     description,
     title,
-    createdAt,
-    authorName,
-    authorAvatar,
+    //createdAt,
+    //authorName,
+    //authorAvatar,
     cover,
     category,
     id,
