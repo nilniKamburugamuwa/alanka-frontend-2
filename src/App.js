@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Register from './Register';
 import BlogHome from './BlogHome';
 import Blog from './Blog';
+import AdminDashboard from './AdminDashboard';
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
     <Router>
     <div className="app">
       <Switch>
+        <Route path='/adminDashboard'>
+          <AdminDashboard/>
+        </Route>
         <Route path='/blogHome'>
           <BlogHome/>
         </Route>
