@@ -3,26 +3,15 @@ import { Link } from 'react-router-dom';
 import Chip from './Chip';
 import './BlogItem.css';
 
-const BlogItem = ({
-  blog: {
-    description,
-    title,
-    //createdAt,
-    //authorName,
-    //authorAvatar,
-    cover,
-    category,
-    id,
-  },
-}) => {
+const BlogItem = ({blog}) => {
   return (
     <div className='blogItem'>
-      <img className='blogItem-cover' src={cover} alt='cover' />
-      <Chip label={category} />
-      <Link className='blogItem-wrap' to={`/blog/${id}`}>
-        <h3>{title}</h3>
+      <img className='blogItem-cover' src={blog.image} alt='cover' />
+      {/*<Chip label={category} /> */}
+      <Link className='blogItem-wrap' to={`/blog/${blog.blogId}`}>
+        <h3>{blog.title}</h3>
       </Link>
-      <p className='blogItem-desc'>{description}</p>
+      <p className='blogItem-desc'>{blog.content}</p>
       {/*<footer>
         <div className='blogItem-author'>
           <img src={authorAvatar} alt='avatar' />

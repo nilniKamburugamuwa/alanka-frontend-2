@@ -46,7 +46,7 @@ function Register() {
     return (
         <div className='register'>
             <Link to='/'>
-                <img className='register__logo' src='https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png'/>
+                <img className='register__logo' src='../alanka_black.png'/>
             </Link>
 
             <div className='register__container'>
@@ -67,16 +67,16 @@ function Register() {
                     </div>
 
                     <h5>First Name</h5>
-                    <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)}/>
+                    <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)} required/>
 
                     <h5>Last Name</h5>
-                    <input type='text' value={lastName} onChange={e => setLastName(e.target.value)}/>
+                    <input type='text' value={lastName} onChange={e => setLastName(e.target.value)} required/>
 
                     <h5>Email</h5>
-                    <input type='text' value={email} onChange={e => setEmail(e.target.value)}/>
+                    <input type='text' value={email} onChange={e => setEmail(e.target.value)}required/>
 
                     <h5>Password</h5>
-                    <input type='password'  value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input type='password'  value={password} onChange={e => setPassword(e.target.value)}required/>
 
                     <button type='submit' /*onClick={signIn}*/ className='login__signInButton'>Register</button>
                 </form>

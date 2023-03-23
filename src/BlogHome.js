@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import EmptyBlogList from './EmptyBlogList';
 import BlogList from './BlogList';
 import BlogSearchBar from './BlogSearchBar';
-import { blogList } from './data';
+//import { blogList } from './data';
+import BlogService from './BlogService';
 
 const BlogHome = () => {
-  const [blogs, setBlogs] = useState(blogList);
+
+  const [blogList, setBlogList] = useState([])
+  const [blogs, setBlogs] = useState([]);
+  useEffect(()=>{
+    BlogService.getAllBlogs().then((response) =>{
+      setBlogList(response.data)
+      setBlogs(response.data)
+    }).catch(error=>{
+      console.log(error)
+    })
+  },[]) 
+
+
   const [searchKey, setSearchKey] = useState('');
 
   // Search submit
@@ -18,7 +31,7 @@ const BlogHome = () => {
   const handleSearchResults = () => {
     const allBlogs = blogList;
     const filteredBlogs = allBlogs.filter((blog) =>
-      blog.category.toLowerCase().includes(searchKey.toLowerCase().trim())
+      blog.title.toLowerCase().includes(searchKey.toLowerCase().trim())
     );
     setBlogs(filteredBlogs);
   };
@@ -42,7 +55,7 @@ const BlogHome = () => {
 
       {/* Blog List & Empty View */}
       <div className='blogHome__grid'></div>
-      {!blogs.length ? <EmptyBlogList /> : <BlogList blogs={blogs} />}
+      <BlogList blogs={blogs} />
     </div>
   );
 };

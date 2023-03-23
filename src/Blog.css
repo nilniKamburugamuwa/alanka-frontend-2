@@ -1,7 +1,12 @@
-.blog-wrap {
-    max-width: 700px;
-    margin: 0 auto;
-  }
+
+
+.blog__wrap {
+  padding: 20px;
+  padding-top: 40px;
+  width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+}
 
   .blog-goBack {
     text-decoration: none;
@@ -14,7 +19,7 @@
     width: fit-content;
     padding: 5px;
   }
-  .blog-wrap header {
+  .blog__header {
     text-align: center;
   }
   
@@ -35,7 +40,8 @@
   .blog-subCategory > div {
     margin: 1rem;
   }
-  .blog-desc {
+  .blog__body {
     padding: 1rem;
     margin-top: 1.5rem;
+    text-align: justify;
   }

@@ -12,7 +12,7 @@ const BlogSearchBar = ({ formSubmit, value, handleSearchKey, clearSearch }) => (
       <input
         className='blogSearchBar__input'
         type='text'
-        placeholder='Search By Category'
+        placeholder='Search By Title'
         value={value}
         onChange={handleSearchKey}
       />

@@ -20,7 +20,7 @@ function Login() {
     return (
         <div className='login'>
             <Link to='/'>
-                <img className='login__logo' src='https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png'/>
+                <img className='login__logo' src='../alanka_black.png'/>
             </Link>
 
             <div className='login__container'>

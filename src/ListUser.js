@@ -15,7 +15,15 @@ const ListUser = () => {
 
     return (
         <div className='listUser'>
-            <h2>User List</h2>
+
+            { users.map(user =>
+                <div>
+                    <h2>{user.firstName}</h2>
+                    <p>{user.lastName}</p>
+                </div>
+            )
+            }
+            {/* <h2>User List</h2>
             <table className='listUser__table'>
                 <thead>
                     <th>User Id</th>
@@ -38,7 +46,7 @@ const ListUser = () => {
                         )
                     }
                 </tbody>
-            </table>
+            </table> */}
         </div>
     )
 }
