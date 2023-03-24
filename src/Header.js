@@ -14,10 +14,39 @@ function Header() {
       <Link to="/">
         <img className='header__logo' src="../alanka.png"/>
       </Link>
-      
+        <Link to='/productHome/craft'>
+          <div className='header__categories'>
+            Crafts
+          </div>
+        </Link>
+        <Link to='/productHome/accessories'>
+          <div className='header__categories'>
+            Accessories
+          </div>
+        </Link>
+        <Link to='/productHome/clothes'>
+          <div className='header__categories'>
+            Clothes
+          </div>
+        </Link>
+        <Link to='/productHome/spices'>
+          <div className='header__categories'>
+            Spices
+          </div>
+        </Link>
+        <Link to='/productHome/tea'>
+          <div className='header__categories'>
+            Tea
+          </div>
+        </Link>
+        
+
       <div className='header__search'>
-          <input className='header__searchInput' type="text"/>
-          <SearchIcon className='header__searchIcon'/>
+          {/* <input className='header__searchInput' type="text"/> */}
+          <Link to='/productHome'>
+            <SearchIcon className='header__searchIcon'/>
+          </Link>
+          
       </div>
 
       <div className='header__nav'>

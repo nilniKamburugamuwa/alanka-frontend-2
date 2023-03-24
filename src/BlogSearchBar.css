@@ -9,11 +9,10 @@
 }
  
 .blogSearchBar__logo{
-  align-items: center;
-  margin-left: 20px;
-  margin-right: 20px;
-  color: white;
-  text-decoration: none;
+  width: 200px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 5px;
 }
 
 .blogSearchBar__search{

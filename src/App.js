@@ -10,6 +10,7 @@ import Register from './Register';
 import BlogHome from './BlogHome';
 import Blog from './Blog';
 import AdminDashboard from './AdminDashboard';
+import ProductHome from './ProductHome';
 
 function App() {
 
@@ -25,6 +26,12 @@ function App() {
       <Switch>
         <Route path='/adminDashboard'>
           <AdminDashboard/>
+        </Route>
+        <Route path='/productHome/:id'>
+          <ProductHome/>
+        </Route>
+        <Route path='/productHome'>
+          <ProductHome/>
         </Route>
         <Route path='/blogHome'>
           <BlogHome/>
@@ -43,7 +50,6 @@ function App() {
           <Checkout/>
         </Route>
         <Route path='/'>
-          <Header/>
           <Home/>
         </Route>
       </Switch>

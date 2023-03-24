@@ -1,0 +1,11 @@
+.productHome{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.productHome__grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1500px;
+}

@@ -14,10 +14,6 @@ function Register() {
 
     const [errors, setErrors] = useState({});
 
-    const validate = (values) => {
-
-    }
-
     async function handleSubmit(event){
         event.preventDefault();
         const errors = validateFormData(firstName, lastName, email, password, confirmPassword);

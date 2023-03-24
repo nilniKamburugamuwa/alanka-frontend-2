@@ -2,10 +2,18 @@ import React, { useState } from 'react'
 import './Login.css'
 import { Link, useHistory } from 'react-router-dom'
 
+const apiLink = "http://localhost:8082/api/user"
+
 function Login() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleSignUp=(e)=>{
+        e.preventDefault();
+        const user = {email, password}
+        fetch(apiLink+"/authenticate")
+    }
 
     const signIn = e => {
         e.preventDefault();
