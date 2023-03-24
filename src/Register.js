@@ -9,10 +9,10 @@ function Register() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [type, setType] = useState('');
 
-    const [formValues, setFormValues] = useState({firstName, lastName, email, password});
-    const [formErrors, setFormErrors] = useState({});
+    const [errors, setErrors] = useState({});
 
     const validate = (values) => {
 
@@ -20,28 +20,54 @@ function Register() {
 
     async function handleSubmit(event){
         event.preventDefault();
-
-        try{
-            await axios.post("http://localhost:8082/api/user/save",{
-                firstName: firstName,
-                lastName : lastName,
-                email: email,
-                password: password,
-                type: type,
-
-            });
-
-            alert("User Registation Successfully");
-            setFirstName("");
-            setLastName("");
-            setEmail("");
-            setPassword("");
-            setType("");
+        const errors = validateFormData(firstName, lastName, email, password, confirmPassword);
+        if (Object.keys(errors).length > 0) {
+          setErrors(errors);
+        } else {
+            try{
+                await axios.post("http://localhost:8082/api/user/save",{
+                    firstName: firstName,
+                    lastName : lastName,
+                    email: email,
+                    password: password,
+                    type: type,
+    
+                });
+    
+                alert("User Registation Successfully");
+                setFirstName("");
+                setLastName("");
+                setEmail("");
+                setPassword("");
+                setType("");
+            }
+            catch(err){
+                alert("User Registation Failed");
+            }        
         }
-        catch(err){
-            alert("User Registation Failed");
-        }
+        
    }
+   const validateFormData = (firstName, lastName, email, password, confirmPassword) => {
+        const errors = {};
+        if (!firstName) {
+        errors.firstName = 'First name is required';
+        }
+        if (!lastName) {
+        errors.lastName = 'Last name is required';
+        }
+        if (!email) {
+        errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+        errors.email = 'Invalid email address';
+        }
+        if (!password) {
+        errors.password = 'Password is required';
+        }
+        if (password !== confirmPassword) {
+        errors.confirmPassword = 'Passwords do not match';
+        }
+        return errors;
+    };
 
     return (
         <div className='register'>
@@ -56,9 +82,9 @@ function Register() {
                     
                     <div className='register__radioButton'>       
                         <h5>Register as:</h5>      
-                        <input type='radio' name="type" value="Buyer" onChange={e => setType(e.target.value)}/>
+                        <input type='radio' name="type" value="Buyer" onChange={e => setType(e.target.value)} required/>
                         <p>Buyer</p> 
-                        <input type='radio' name="type" value="Seller" onChange={e => setType(e.target.value)}/>
+                        <input type='radio' name="type" value="Seller" onChange={e => setType(e.target.value)} required/>
                         <p>Seller</p>               
                     </div>
                     
@@ -67,16 +93,24 @@ function Register() {
                     </div>
 
                     <h5>First Name</h5>
-                    <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)} required/>
+                    <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)} />
+                    <div className='register__error'>{errors.firstName && <p>{errors.firstName}</p>}</div>
 
                     <h5>Last Name</h5>
-                    <input type='text' value={lastName} onChange={e => setLastName(e.target.value)} required/>
+                    <input type='text' value={lastName} onChange={e => setLastName(e.target.value)} />
+                    <div className='register__error'>{errors.lastName && <p>{errors.lastName}</p>}</div>
 
                     <h5>Email</h5>
-                    <input type='text' value={email} onChange={e => setEmail(e.target.value)}required/>
+                    <input type='text' value={email} onChange={e => setEmail(e.target.value)}/>
+                    <div className='register__error'>{errors.email && <p>{errors.email}</p>}</div>
 
                     <h5>Password</h5>
-                    <input type='password'  value={password} onChange={e => setPassword(e.target.value)}required/>
+                    <input type='password'  value={password} onChange={e => setPassword(e.target.value)}/>
+                    <div className='register__error'>{errors.password && <p>{errors.password}</p>}</div>
+
+                    <h5>Confirm Password</h5>
+                    <input type='password'  value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
+                    <div className='register__error'>{errors.confirmPassword && <p>{errors.confirmPassword}</p>}</div>
 
                     <button type='submit' /*onClick={signIn}*/ className='login__signInButton'>Register</button>
                 </form>

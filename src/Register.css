@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height:fit-content;
     background-color: white;
+    padding-bottom: 50px;
 }
 
 .register__logo{
@@ -73,4 +74,9 @@
     border: 1px solid;
     margin-top: 10px;
     border-color: darkgrey;
+}
+
+.register__error{
+    color: red;
+    margin-bottom: 10px;
 }
