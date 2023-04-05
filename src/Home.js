@@ -25,7 +25,6 @@ function Home() {
         <div className='home__container'>
             
             <img className='home__image' src='https://m.media-amazon.com/images/I/61Ly9zlsGxL._SX1500_.jpg'/>
-            <CategoryList/>
             <div className="home__row">
                 <Product product={product}/>
                 <Product product={product}/>

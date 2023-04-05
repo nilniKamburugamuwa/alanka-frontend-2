@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Login.css'
 import { Link, useHistory } from 'react-router-dom'
 
-const apiLink = "http://localhost:8082/api/user"
+const apiLink = "http://localhost:8082/api/v1/auth"
 
 function Login() {
     const history = useHistory();
@@ -12,7 +12,25 @@ function Login() {
     const handleSignUp=(e)=>{
         e.preventDefault();
         const user = {email, password}
-        fetch(apiLink+"/authenticate")
+        fetch(apiLink+"/authenticate", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(user)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data);
+                if(data !=null){
+                    console.log("User is added.");
+                    history("/userName");
+                }
+                else{
+                    console.log("Error:", data.message);
+                }
+            })
+            .catch(error =>{
+                console.error("Error:", error);
+            });
     }
 
     const signIn = e => {
@@ -41,12 +59,10 @@ function Login() {
                     <h5>Password</h5>
                     <input type='password'  value={password} onChange={e => setPassword(e.target.value)}/>
 
-                    <button type='submit' onClick={signIn} className='login__signInButton'>Sign In</button>
+                    <button type='submit' onClick={(e)=>handleSignUp(e)} className='login__signInButton'>Sign In</button>
                 </form>
 
-                <p>By signing-in you agree to Amazon Clone's Conditions of Use & Sale.</p>
-
-                <button onClick={register} className='login__registerButton'>Create your Amazon Account</button>
+                <button onClick={register} className='login__registerButton'>Create your Alanka Account</button>
             </div>
         </div>
     )
