@@ -1,0 +1,26 @@
+.userList{
+    width: max-content;
+    text-align: center;
+    align-items: center;
+}
+
+.tableContainer{
+    padding-left: 250px;
+}
+
+.tableHeader{
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.userTable{
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.td{
+    width: 200px;
+}

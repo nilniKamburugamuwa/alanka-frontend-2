@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USER_URL = 'http://localhost:8082/api/user/getAll'
+const USER_URL = 'http://localhost:8082/api/v1/auth/getAll'
 
 class UserService{
     getAllUsers(){

@@ -21,7 +21,7 @@ function Register() {
           setErrors(errors);
         } else {
             try{
-                await axios.post("http://localhost:8082/api/user/save",{
+                await axios.post("http://localhost:8082/api/v1/auth/register",{
                     firstName: firstName,
                     lastName : lastName,
                     email: email,

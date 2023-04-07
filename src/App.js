@@ -11,6 +11,8 @@ import BlogHome from './BlogHome';
 import Blog from './Blog';
 import AdminDashboard from './AdminDashboard';
 import ProductHome from './ProductHome';
+import UserPage from './UserPage';
+import { AdminPage } from './AdminPage';
 
 function App() {
 
@@ -24,6 +26,12 @@ function App() {
     <Router>
     <div className="app">
       <Switch>
+        <Route path='/adminPage'>
+          <AdminPage/>
+        </Route>
+        <Route path='/userPage'>
+          <UserPage/>
+        </Route>
         <Route path='/adminDashboard'>
           <AdminDashboard/>
         </Route>

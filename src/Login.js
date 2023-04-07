@@ -17,12 +17,37 @@ function Login() {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(user)
             })
-            .then(res=>res.json())
+            .then(res=>{
+                console.log(res)
+                if(res.status===403){
+                    alert("Your email address or password is wrong");
+                }
+                if(res.status===200){
+                    return res.json();
+                }
+                else{
+                    console.error(res);
+                }
+            }).then(data=>{
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify({
+                        token: data.token,
+                        refreshToken: data.refreshToken,
+                    })
+                    
+                )
+                history.push("/userPage");
+                //getUsername();
+            }).catch(error=>{
+                console.log(error)
+            })
+/*             .then(res=>res.json())
             .then(data=>{
                 console.log(data);
                 if(data !=null){
                     console.log("User is added.");
-                    history("/userName");
+                    history.push("/userPage");
                 }
                 else{
                     console.log("Error:", data.message);
@@ -30,7 +55,7 @@ function Login() {
             })
             .catch(error =>{
                 console.error("Error:", error);
-            });
+            }); */
     }
 
     const signIn = e => {

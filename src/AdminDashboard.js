@@ -17,6 +17,9 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import UserService from './UserService';
 import { TableHead } from '@mui/material';
+import "./AdminDashboard.css"
+import AdminUserList from './AdminUserList';
+import AdminSellerList from './AdminSellerList';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -100,94 +103,11 @@ const rows = [
   createData('Oreo', 437, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-export default function AdminDashboard() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const [users, setUsers] = useState([])
-
-  useEffect(()=>{
-      UserService.getAllUsers().then((response) => {
-          setUsers(response.data)
-      }).catch(error =>{
-          console.log(error)
-      })
-  },[])
-
-  return (
-    <div className='userList'>
-      <h2>User List</h2>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-          <TableHead>
-            <th>User Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Type</th>
-          </TableHead>
-          <TableBody>
-            {users.map((user) => (
-              <TableRow key={user.id}>
-                <TableCell component="th" scope="row">
-                  {user.id}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {user.firstName}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {user.lastName}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {user.email}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {user.type}
-                </TableCell>
-              </TableRow>
-            ))}
-
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                colSpan={3}
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    'aria-label': 'rows per page',
-                  },
-                  native: true,
-                }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </TableContainer>
+export default function AdminDashboard(){
+  return(
+    <div>
+      <AdminUserList/>
+      <AdminSellerList/>
     </div>
-  );
+  )
 }
