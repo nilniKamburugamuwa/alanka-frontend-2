@@ -13,6 +13,7 @@ import AdminDashboard from './AdminDashboard';
 import ProductHome from './ProductHome';
 import UserPage from './UserPage';
 import { AdminPage } from './AdminPage';
+import ProductPage from './ProductPage';
 
 function App() {
 
@@ -26,6 +27,9 @@ function App() {
     <Router>
     <div className="app">
       <Switch>
+      <Route path='/productPage'>
+          <ProductPage/>
+        </Route>
         <Route path='/adminPage'>
           <AdminPage/>
         </Route>

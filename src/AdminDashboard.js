@@ -1,113 +1,251 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import UserService from './UserService';
-import { TableHead } from '@mui/material';
 import "./AdminDashboard.css"
 import AdminUserList from './AdminUserList';
 import AdminSellerList from './AdminSellerList';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import UserService from './UserService';
+import { Link } from 'react-router-dom';
 
-function TablePaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
-
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
   return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 5 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
   );
 }
 
-TablePaginationActions.propTypes = {
-  count: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
+function a11yProps(index) {
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
+  };
 }
-
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
 export default function AdminDashboard(){
+  const [value, setValue] = React.useState(0);
+    
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  const [users, setUsers] = useState([])
+  const [userList, setUserList] = useState([])
+  useEffect(()=>{
+      UserService.getAllUsers().then((response) => {
+          setUserList(response.data)
+          setUsers(response.data)
+      }).catch(error =>{
+          console.log(error)
+      })
+  },[])
+  
+
+  const type = "seller";
   return(
     <div>
-      <AdminUserList/>
-      <AdminSellerList/>
-    </div>
-  )
-}
+      <div className='header'>
+        <h1>Admin Dashboard</h1>
+        <Link to="/login"><button className='header__button'>Sign Out</button></Link>
+        
+      </div>
+        <Box
+          sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 750 }}
+        >
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs example"
+            sx={{ borderRight: 1, borderColor: 'divider' }}
+          >
+            <Tab label="Overview" {...a11yProps(0)} />
+            <Tab label="Users" {...a11yProps(1)} />
+            <Tab label="Sellers" {...a11yProps(2)} />
+            <Tab label="Buyers" {...a11yProps(3)} />
+            <Tab label="Products" {...a11yProps(4)} />
+            <Tab label="Articles" {...a11yProps(5)} />
+          </Tabs>
+          <div className='panelContainer'>
+          <TabPanel className="tablePanel" value={value} index={0}>
+            <div className='count'>
+              <div className='count__container'>
+                <h2>Registered Users</h2>
+                <h2>{users.length}</h2>
+              </div>
+              <div className='count__container'>
+                <h2>Buyers</h2>
+                <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("buyer");}).length}</h2>
+              </div>
+              <div className='count__container'>
+                <h2>Sellers</h2>
+                <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).length}</h2>
+              </div>
+              <div className='count__container'>
+                <h2>Verified Sellers</h2>
+                <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).length}</h2>
+              </div>
+            </div>
+            <div className='count'>
+              <div className='count__container'>
+                <h2>Shops</h2>
+                <h2>{users.length}</h2>
+              </div>
+              <div className='count__container'>
+                <h2>Products</h2>
+                <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("buyer");}).length}</h2>
+              </div>
+              <div className='count__container'>
+                <h2>Sellers</h2>
+                <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).length}</h2>
+              </div>
+              <div className='count__container'>
+                <h2>Verified Sellers</h2>
+                <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).length}</h2>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel className="tablePanel" value={value} index={1}>
+          <div className='userList'>
+        <div className='tableContainer'>
+        <div className='userTable'>
+          <table>
+            <thead>
+              <th>User Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Type</th>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.id}>
+                  <td className='td'>
+                    {user.id}
+                  </td>
+                  <td className='td'>
+                    {user.firstName}
+                  </td>
+                  <td className='td'>
+                    {user.lastName}
+                  </td>
+                  <td className='td'>
+                    {user.email}
+                  </td>
+                  <td className='td'>
+                    {user.type}
+                  </td>
+                  <td></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+          </TabPanel>
+          <TabPanel className="tablePanel" value={value} index={2}>
+          <div className='userList'>
+        <div className='tableContainer'>
+        <div className='userTable'>
+          <table>
+            <thead>
+              <th>User Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              {users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).map((user) => (
+                <tr key={user.id}>
+                  <td className='td'>
+                    {user.id}
+                  </td>
+                  <td className='td'>
+                    {user.firstName}
+                  </td>
+                  <td className='td'>
+                    {user.lastName}
+                  </td>
+                  <td className='td'>
+                    {user.email}
+                  </td>
+                  <td>Verified</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+          <div className='userList'>
+        <div className='tableContainer'>
+        <div className='userTable'>
+          <table>
+            <thead>
+              <th>User Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              {users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("buyer");}).map((user) => (
+                <tr key={user.id}>
+                  <td className='td'>
+                    {user.id}
+                  </td>
+                  <td className='td'>
+                    {user.firstName}
+                  </td>
+                  <td className='td'>
+                    {user.lastName}
+                  </td>
+                  <td className='td'>
+                    {user.email}
+                  </td>
+                  <td>Verified</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            Item Five
+          </TabPanel>
+          <TabPanel value={value} index={5}>
+            Item Six
+          </TabPanel>
+          </div>
+        </Box>
+        </div>
+      );
+    }
+

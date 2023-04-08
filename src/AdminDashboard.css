@@ -5,7 +5,7 @@
 }
 
 .tableContainer{
-    padding-left: 250px;
+    padding: 20px;
 }
 
 .tableHeader{
@@ -19,8 +19,57 @@
     display: flex;
     justify-content: center;
     border: 1px solid black;
+    padding: 20px;
 }
 
 .td{
+    width: fit-content;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.panelContainer{
+    display: flex;
+    justify-content: center;
+
+}
+
+.header{
+    height: 60px;
+    display:flex;
+    justify-content: space-between;
+    background-color: #131921;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    text-decoration: none;
+    color: white;
+}
+
+.header > h1{
+    margin-left: 20px;
+}
+
+.header__button{
+    margin-right: 20px;
+    padding: 10px;
+    width: 100px;
+    background-color: #cd9042;
+}
+
+.count{
+    margin-top: 20px;
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.count__container{
+    text-align: center;
+    border: 5px solid black;
+    padding: 10px;
     width: 200px;
+    border-radius: 10px;
+    
 }
