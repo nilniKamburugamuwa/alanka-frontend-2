@@ -21,16 +21,17 @@ const Blog = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
 
+
   useEffect(() => {
     let blog = blogList.find((blog) => blog.blogId === parseInt(id));
     if (blog) {
       setBlog(blog);
     }
-  }, []);
+  }, []); 
 
   return (
     <div className='blog'>
-      
+      <BlogSearchBar/>
       <Link className='blog-goBack' to='/blogHome'>
         <div className='blog__back'><span> &#8592;</span> <span>Go Back</span></div>
       </Link>
@@ -47,8 +48,11 @@ const Blog = () => {
               ))}
             </div> */}
           </header>
-{/*           <img src={blog.cover} alt='cover' />
- */}          <p className='blog__body'>{blog.content}</p>
+          <div className='image__container'>
+            <img className='blog__image' src={blog.image} alt='cover' />
+          </div>
+           
+           <p className='blog__body'>{blog.content}</p>
         </div>
       ) : (
         <EmptyList />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Register.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -13,6 +13,7 @@ function Register() {
     const [type, setType] = useState('');
 
     const [errors, setErrors] = useState({});
+
 
     async function handleSubmit(event){
         event.preventDefault();

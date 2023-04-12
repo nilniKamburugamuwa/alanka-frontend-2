@@ -6,6 +6,7 @@ import ListUser from './ListUser'
 import Product from './Product'
 import ProductList from './ProductList'
 import ProductService from './ProductService'
+import { useHistory } from 'react-router-dom'
 
 function Home() {
 
@@ -24,7 +25,7 @@ function Home() {
 
         <div className='home__container'>
             
-            <img className='home__image' src='https://m.media-amazon.com/images/I/61Ly9zlsGxL._SX1500_.jpg'/>
+            <img className='home__image' src='https://todaytea.com/images/banner-products.jpg'/>
             <div className="home__row">
                 <Product product={product}/>
                 <Product product={product}/>

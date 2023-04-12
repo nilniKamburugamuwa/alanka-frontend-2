@@ -37,7 +37,7 @@ function Login() {
                     })
                     
                 )
-                history.push("/userPage");
+                history.push("/home2");
                 //getUsername();
             }).catch(error=>{
                 console.log(error)

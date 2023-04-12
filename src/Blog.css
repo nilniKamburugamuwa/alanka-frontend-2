@@ -6,6 +6,7 @@
   width: 1000px;
   margin: 0 auto;
   background-color: white;
+  
 }
 
   .blog-goBack {
@@ -44,4 +45,16 @@
     padding: 1rem;
     margin-top: 1.5rem;
     text-align: justify;
+  }
+
+  .blog__image{
+    width: 1000px;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .image__container{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
   }

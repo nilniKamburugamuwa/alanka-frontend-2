@@ -1,0 +1,23 @@
+.productFilter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.category-selector{
+    padding-right: 50px;
+}
+
+.selector{
+    width: 150px;
+    height: 33px;
+    border-radius: 5px;
+}
+
+.price-range-selector > label{
+    padding-right: 10px;
+}

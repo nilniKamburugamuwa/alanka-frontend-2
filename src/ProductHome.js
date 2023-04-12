@@ -5,6 +5,8 @@ import Header from './Header';
 import ProductService from './ProductService';
 import ProductSearchBar from './ProductSearchBar';
 import { useParams } from 'react-router-dom';
+import ProductFilter from './ProductFilter';
+import PriceRangeSelector from './PriceRangeSelector';
 
 const ProductHome = () => {
 
@@ -65,6 +67,7 @@ const ProductHome = () => {
         handleSearchKey={(e) => setSearchKey(e.target.value)}
       />
 
+      <ProductFilter/>
       {/* product List & Empty View */}
       <div className='productHome__grid'></div>
       <ProductList products={products} />

@@ -1,0 +1,27 @@
+.price-range-selector {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  
+  .price-range-selector__label {
+    margin-right: 0.5rem;
+  }
+  
+  .price-range-selector__input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .price-range-selector__input {
+    width: 6rem;
+    padding: 0.5rem;
+    border: 1px solid gray;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+  }
+  
+  .price-range-selector__separator {
+    margin: 0 0.5rem;
+  }
+  

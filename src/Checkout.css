@@ -15,3 +15,8 @@
     padding: 10px;
     border-bottom: 1px solid lightgrey;
 }
+
+.checkout__right{
+    margin-left: 300px;
+    margin-top: 50px;
+}

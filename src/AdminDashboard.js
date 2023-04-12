@@ -116,14 +116,6 @@ export default function AdminDashboard(){
                 <h2>Products</h2>
                 <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("buyer");}).length}</h2>
               </div>
-              <div className='count__container'>
-                <h2>Sellers</h2>
-                <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).length}</h2>
-              </div>
-              <div className='count__container'>
-                <h2>Verified Sellers</h2>
-                <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).length}</h2>
-              </div>
             </div>
           </TabPanel>
           <TabPanel className="tablePanel" value={value} index={1}>
