@@ -55,6 +55,7 @@ th{
     padding: 10px;
     width: 100px;
     background-color: #cd9042;
+    margin-bottom: 15px;
 }
 
 .count{
@@ -77,6 +78,19 @@ th{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.tablePanel > input{
-    margin: 10px;
+.profile__notice >p{
+    color:red;
+}
+
+.profile__notice{
+    border:2px solid red;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 50px;
+    height: fit-content;
+}
+
+.profile{
+    display: flex;
+
 }

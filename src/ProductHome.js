@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import ProductFilter from './ProductFilter';
 import PriceRangeSelector from './PriceRangeSelector';
 
-const ProductHome = () => {
+const ProductHome = (props) => {
 
   const [productList, setProductList] = useState([])
   const [products, setProducts] = useState([]);
@@ -55,6 +55,47 @@ const ProductHome = () => {
     setProducts(productList);
     setSearchKey('');
   };
+
+  const { minPrice, maxPrice, onPriceRangeChange } = props;
+
+  const [selectedMinPrice, setSelectedMinPrice] = useState(minPrice);
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState(maxPrice);
+
+  const handleMinPriceChange = (e) => {
+    const newMinPrice = Number(e.target.value);
+    setSelectedMinPrice(newMinPrice);
+    onPriceRangeChange(newMinPrice, selectedMaxPrice);
+  };
+
+  const handleMaxPriceChange = (e) => {
+    const newMaxPrice = Number(e.target.value);
+    setSelectedMaxPrice(newMaxPrice);
+    onPriceRangeChange(selectedMinPrice, newMaxPrice);
+  };
+
+const [selectedCategory, setSelectedCategory] = useState('all');
+const [selectedPriceRange, setSelectedPriceRange] = useState('all');
+
+const handleCategoryChange = (e) => {
+  setSelectedCategory(e.target.value);
+};
+
+const handlePriceRangeChange = (e) => {
+  setSelectedPriceRange(e.target.value);
+};
+
+const filteredProducts = products.filter((product) => {
+  if (selectedCategory === 'all' && selectedPriceRange === 'all') {
+    return true;
+  }
+  if (selectedCategory !== 'all' && product.category !== selectedCategory) {
+    return false;
+  }
+  if (selectedPriceRange !== 'all' && product.price > selectedPriceRange) {
+    return false;
+  }
+  return true;
+});
 
   return (
     <div className='productHome'>

@@ -1,0 +1,22 @@
+.form-button{
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    background-color: #f1356d;
+    border-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  
+.form-structure{
+    padding: 10px 16px;
+    margin: 0 auto;
+    border-bottom: 1px solid #fafafa;
+    width:600px;
+    padding:30px;
+    border:1px solid grey;
+    border-radius:20px;
+    margin-top:30px;
+  }

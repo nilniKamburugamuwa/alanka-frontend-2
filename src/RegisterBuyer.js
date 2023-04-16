@@ -3,14 +3,13 @@ import './Register.css'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
-function Register() {
+function RegisterBuyer() {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [type, setType] = useState('');
 
     const [errors, setErrors] = useState({});
 
@@ -23,12 +22,12 @@ function Register() {
           setErrors(errors);
         } else {
             try{
-                await axios.post("http://localhost:8082/api/user/register",{
+                await axios.post("http://localhost:8082/api/v1/auth/register",{
                     firstName: firstName,
                     lastName : lastName,
                     email: email,
                     password: password,
-                    type: type,
+                    type: "buyer",
     
                 });
     
@@ -38,8 +37,7 @@ function Register() {
                 setEmail("");
                 setPassword("");
                 setConfirmPassword("");
-                setType("");
-                history.push("/home");
+                history.push("/userPage");
             }
             catch(err){
                 alert("User Registation Failed");
@@ -76,21 +74,9 @@ function Register() {
             </Link>
 
             <div className='register__container'>
-                <h1>Register</h1>
+                <h2>Register as Buyer</h2>
 
                 <form className="register__form" onSubmit={handleSubmit}> 
-                    
-                    <div className='register__radioButton'>       
-                        <h5>Register as:</h5>      
-                        <input type='radio' name="type" value="Buyer" onChange={e => setType(e.target.value)} required/>
-                        <p>Buyer</p> 
-                        <input type='radio' name="type" value="Seller" onChange={e => setType(e.target.value)} required/>
-                        <p>Seller</p>               
-                    </div>
-                    
-                    <div className='register__radioButton'>
-                        
-                    </div>
 
                     <h5>First Name</h5>
                     <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)} />
@@ -119,4 +105,4 @@ function Register() {
     )
 }
 
-export default Register
+export default RegisterBuyer

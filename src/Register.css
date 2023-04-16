@@ -80,3 +80,30 @@
     color: red;
     margin-bottom: 10px;
 }
+
+.register__phone{
+    display: flex;
+    justify-content: right;
+}
+
+.register__phone > input{
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 70%;
+    margin-left: 10px;
+}
+
+.register__phone > p{
+    margin-top: 5px;
+}
+
+.register__phoneLabel{
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.register__phone__tooltip{
+    margin-top: 5px;
+    margin-left: 10px;
+}

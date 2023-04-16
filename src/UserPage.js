@@ -1,22 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { GetCurrentUser } from './GetCurrentUser';
 
-function UserPage(props) {
-  const [user, setUser] = useState({});
+function UserPage() {
+
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Fetch user data from API and update state
-    fetch('/api/user')
-      .then(response => response.json())
-      .then(data => setUser(data))
-      .catch(error => console.error(error));
+    async function fetchData() {
+      try {
+        console.log(GetCurrentUser());
+        const token = localStorage.getItem('user');
+        const response = await axios.get('http://localhost:8082/api/user', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchData();
   }, []);
 
   return (
     <div>
-      <h1>Welcome, {user.name}!</h1>
-      <p>Your email address is {user.email}.</p>
-      <p>Your account was created on {new Date(user.createdOn).toLocaleDateString()}.</p>
-      <button onClick={props.onLogout}>Logout</button>
+      {user ? (
+        <div>
+          <p>Welcome, {user.firstName}!</p>
+          <p>Email: {user.email}</p>
+        </div>
+      ) : (
+        <p>Please log in</p>
+      )}
     </div>
   );
 }

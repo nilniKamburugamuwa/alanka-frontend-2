@@ -9,8 +9,13 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import UserService from './UserService';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 function TabPanel(props) {
+
+
   const { children, value, index, ...other } = props;
 
   return (
@@ -44,7 +49,8 @@ function a11yProps(index) {
 }
 
 export default function AdminDashboard(){
-  const [value, setValue] = React.useState(0);
+
+  const [value, setValue] = React.useState("");
     
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -60,6 +66,38 @@ export default function AdminDashboard(){
       })
   },[])
   
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    type: "",
+  });
+
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    const result = await axios.get("http://localhost:8082/api/user/getAll");
+    setData(result.data);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post("http://localhost:8082/api/user/save", formData);
+    fetchData();
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      type: "",
+    });
+  };
+
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:8082/api/user/delete/${id}`);
+    fetchData();
+  };
 
   const type = "seller";
   return(
@@ -91,34 +129,68 @@ export default function AdminDashboard(){
           <TabPanel className="tablePanel" value={value} index={0}>
             <div className='count'>
               <div className='count__container'>
-                <h2>Registered Users</h2>
+                <p>Registered Users</p>
                 <h2>{users.length}</h2>
               </div>
               <div className='count__container'>
-                <h2>Buyers</h2>
+                <p>Buyers</p>
                 <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("buyer");}).length}</h2>
               </div>
               <div className='count__container'>
-                <h2>Sellers</h2>
+                <p>Sellers</p>
                 <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).length}</h2>
               </div>
               <div className='count__container'>
-                <h2>Verified Sellers</h2>
+                <p>Verified Sellers</p>
                 <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).length}</h2>
               </div>
-            </div>
-            <div className='count'>
               <div className='count__container'>
-                <h2>Shops</h2>
-                <h2>{users.length}</h2>
-              </div>
-              <div className='count__container'>
-                <h2>Products</h2>
+                <p>Products</p>
                 <h2>{users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("buyer");}).length}</h2>
               </div>
             </div>
           </TabPanel>
           <TabPanel className="tablePanel" value={value} index={1}>
+            <div>
+            <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="First Name"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Last Name"
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+                <input
+          type="email"
+          name="email"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+                <input
+          type="email"
+          name="email"
+          placeholder="Type"
+          value={formData.type}
+          onChange={handleChange}
+        />
+        <button onClick={handleSubmit} type="submit">Add User</button>
+      </form>
+            </div>
           <div className='userList'>
         <div className='tableContainer'>
         <div className='userTable'>
@@ -148,7 +220,10 @@ export default function AdminDashboard(){
                   <td className='td'>
                     {user.type}
                   </td>
-                  <td></td>
+                  <td>
+                    <button onClick={() => handleDelete(user.id)}><DeleteIcon/></button>
+
+                    </td>
                 </tr>
               ))}
             </tbody>
@@ -185,6 +260,7 @@ export default function AdminDashboard(){
                     {user.email}
                   </td>
                   <td>Verified</td>
+                  <td><button>Verify</button></td>
                 </tr>
               ))}
             </tbody>

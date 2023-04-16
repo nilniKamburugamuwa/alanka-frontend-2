@@ -1,0 +1,28 @@
+.shopPage{
+    text-align: center;
+}
+
+.shopPage__header > p{
+    font-size: 50px;
+} 
+
+.shopPage__header > h1{
+    font-size: 50px;
+} 
+
+.shop__image{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    z-index: -1;
+    margin-bottom: -150px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.shopPage__search{
+    margin: 10px;
+}
+
+.search__input{
+    width: 400px;
+}

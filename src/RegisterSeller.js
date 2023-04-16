@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react'
 import './Register.css'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
-
-function Register() {
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import InfoIcon from '@mui/icons-material/Info';
+function RegisterSeller() {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [type, setType] = useState('');
 
     const [errors, setErrors] = useState({});
 
@@ -18,7 +20,7 @@ function Register() {
 
     async function handleSubmit(event){
         event.preventDefault();
-        const errors = validateFormData(firstName, lastName, email, password, confirmPassword);
+        const errors = validateFormData(firstName, lastName, email, phoneNumber, password, confirmPassword);
         if (Object.keys(errors).length > 0) {
           setErrors(errors);
         } else {
@@ -28,7 +30,7 @@ function Register() {
                     lastName : lastName,
                     email: email,
                     password: password,
-                    type: type,
+                    type: "buyer",
     
                 });
     
@@ -38,7 +40,6 @@ function Register() {
                 setEmail("");
                 setPassword("");
                 setConfirmPassword("");
-                setType("");
                 history.push("/home");
             }
             catch(err){
@@ -47,7 +48,7 @@ function Register() {
         }
         
    }
-   const validateFormData = (firstName, lastName, email, password, confirmPassword) => {
+   const validateFormData = (firstName, lastName, email, phoneNumber, password, confirmPassword) => {
         const errors = {};
         if (!firstName) {
         errors.firstName = 'First name is required';
@@ -59,6 +60,9 @@ function Register() {
         errors.email = 'Email is required';
         } else if (!/\S+@\S+\.\S+/.test(email)) {
         errors.email = 'Invalid email address';
+        }
+        if (!phoneNumber) {
+          errors.phoneNumber = 'Phone number is required';
         }
         if (!password) {
         errors.password = 'Password is required';
@@ -76,21 +80,9 @@ function Register() {
             </Link>
 
             <div className='register__container'>
-                <h1>Register</h1>
+                <h2>Register as Seller</h2>
 
                 <form className="register__form" onSubmit={handleSubmit}> 
-                    
-                    <div className='register__radioButton'>       
-                        <h5>Register as:</h5>      
-                        <input type='radio' name="type" value="Buyer" onChange={e => setType(e.target.value)} required/>
-                        <p>Buyer</p> 
-                        <input type='radio' name="type" value="Seller" onChange={e => setType(e.target.value)} required/>
-                        <p>Seller</p>               
-                    </div>
-                    
-                    <div className='register__radioButton'>
-                        
-                    </div>
 
                     <h5>First Name</h5>
                     <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)} />
@@ -103,6 +95,19 @@ function Register() {
                     <h5>Email</h5>
                     <input type='text' value={email} onChange={e => setEmail(e.target.value)}/>
                     <div className='register__error'>{errors.email && <p>{errors.email}</p>}</div>
+
+                    <div className='register__phoneLabel'>
+                    <h5>Phone Number</h5>
+                    </div>
+                    <div className='register__phone'>
+                      <p>+94</p>
+                      <input type='text' maxLength={9} value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}/>
+                      <Tooltip className='register__phone__tooltip' title="Phone number must be Sri Lankan as only Sri Lankans are allowed to register as Sellers on Alanka">
+                        <InfoIcon />
+                      </Tooltip>
+                    </div>
+
+                    <div className='register__error'>{errors.phoneNumber && <p>{errors.phoneNumber}</p>}</div>
 
                     <h5>Password</h5>
                     <input type='password'  value={password} onChange={e => setPassword(e.target.value)}/>
@@ -119,4 +124,4 @@ function Register() {
     )
 }
 
-export default Register
+export default RegisterSeller

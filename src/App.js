@@ -17,6 +17,13 @@ import ProductPage from './ProductPage';
 import Home2 from './Home2';
 import SellerDashboard from './SellerDashboard';
 import ShopPage from './ShopPage';
+import Crud from './crud';
+import SellerForm from './SellerForm';
+import AddProduct from './AddProduct';
+import SellerProfile from './SellerProfile';
+import RegisterSeller from './RegisterSeller';
+import RegisterBuyer from './RegisterBuyer';
+import Login2 from './Login2';
 
 function App() {
 
@@ -30,8 +37,26 @@ function App() {
     <Router>
     <div className="app">
       <Switch>
-      <Route path='/home2'>
+        <Route path='/home2'>
           <Home2/>
+        </Route>
+        <Route path='/login2'>
+          <Login2/>
+        </Route>
+        <Route path='/RegisterSeller'>
+          <RegisterSeller/>
+        </Route>
+        <Route path='/RegisterBuyer'>
+          <RegisterBuyer/>
+        </Route>
+        <Route path='/sellerProfile'>
+          <SellerProfile/>
+        </Route>
+        <Route path='/addProduct'>
+          <AddProduct/>
+        </Route>
+        <Route path='/sellerForm'>
+          <SellerForm/>
         </Route>
         <Route path='/sellerDashboard'>
           <SellerDashboard/>
