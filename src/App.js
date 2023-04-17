@@ -86,6 +86,9 @@ function App() {
         <Route path='/blog/:id'>
           <Blog/>
         </Route>
+        <Route path='/product/:id'>
+          <ProductPage/>
+        </Route>
         <Route path='/register'>
           <Register/>
         </Route>

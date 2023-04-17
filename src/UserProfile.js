@@ -17,6 +17,7 @@ import AddProduct from './AddProduct';
 import GetVerified from './GetVerified';
 import Header from './Header';
 import BuyerProfile from './BuyerProfile';
+import ProductRequest from './ProductRequest';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -115,9 +116,9 @@ export default function UserProfile(){
             <Tab label="Profile" {...a11yProps(0)} />
             <Tab label="Payment" {...a11yProps(1)} />
             <Tab label="Requests" {...a11yProps(2)} />
-            <Tab label="Add Product" {...a11yProps(3)} />
-            <Tab label="Get Verified" {...a11yProps(4)} />
-            <Tab label="Buyer Requests" {...a11yProps(5)} />
+            <Tab label="Post Request" {...a11yProps(3)} />
+            <Tab label="Help" {...a11yProps(4)} />
+
           </Tabs>
           <div className='panelContainer'>
           <TabPanel className="tablePanel" value={value} index={0}>
@@ -137,12 +138,12 @@ export default function UserProfile(){
         <div className='userTable'>
           <table>
             <thead>
-              <th>Product Id</th>
-              <th>Name</th>
-              <th>Category</th>
+              <th>Request Id</th>
+              <th>Title</th>
               <th>Description</th>
-              <th>Price</th>
-              <th>Stock</th>
+              <th>Budget</th>
+              <th>Quantity</th>
+              <th>Due date</th>
             </thead>
             <tbody>
               {users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).map((user) => (
@@ -169,7 +170,7 @@ export default function UserProfile(){
       </div>
           </TabPanel>
           <TabPanel value={value} index={3}>
-                <AddProduct/>
+                <ProductRequest/>
           </TabPanel>
           <TabPanel value={value} index={4}>
           <GetVerified/>

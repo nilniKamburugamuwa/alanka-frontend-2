@@ -1,6 +1,7 @@
 import React from 'react'
 import './Product.css'
 import { useStateValue } from './StateProvider'
+import { Link } from 'react-router-dom';
 
 function Product({product}) {
   
@@ -23,7 +24,9 @@ function Product({product}) {
   return (
     <div className='product'>
         <div className="product__info">
+          <Link className='productItem-wrap' to={`/product/${product.productId}`}>
             <p>{product.name}</p>
+            </Link>
             <p className='product__price'><small>$</small><strong>{product.price}</strong></p>
             <div className="product__rating">
                 {Array(product.rating).fill().map((_, i)=>(<p>⭐</p>
