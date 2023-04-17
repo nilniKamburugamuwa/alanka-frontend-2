@@ -61,7 +61,7 @@ function Home() {
       )}
         </div>
       ) : (
-        <p>Please log in</p>
+        <></>
       )}
     </div>
         <Header/>

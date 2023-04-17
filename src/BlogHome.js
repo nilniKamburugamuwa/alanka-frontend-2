@@ -4,9 +4,11 @@ import BlogList from './BlogList';
 import BlogSearchBar from './BlogSearchBar';
 //import { blogList } from './data';
 import BlogService from './BlogService';
+import { useHistory } from 'react-router-dom';
 
 const BlogHome = () => {
 
+  let history = useHistory();
   const [blogList, setBlogList] = useState([])
   const [blogs, setBlogs] = useState([]);
   useEffect(()=>{

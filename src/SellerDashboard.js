@@ -13,6 +13,7 @@ import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import SellerProfile from './SellerProfile';
+import AddProduct from './AddProduct';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -115,7 +116,7 @@ export default function SellerDashboard(){
             <Tab label="Overview" {...a11yProps(0)} />
             <Tab label="Profile" {...a11yProps(1)} />
             <Tab label="Shop" {...a11yProps(2)} />
-            <Tab label="Products" {...a11yProps(3)} />
+            <Tab label="Add Product" {...a11yProps(3)} />
             <Tab label="Get Verified" {...a11yProps(4)} />
           </Tabs>
           <div className='panelContainer'>
@@ -187,40 +188,7 @@ export default function SellerDashboard(){
       </div>
           </TabPanel>
           <TabPanel value={value} index={3}>
-          <div className='userList'>
-        <div className='tableContainer'>
-        <div className='userTable'>
-          <table>
-            <thead>
-              <th>User Id</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Status</th>
-            </thead>
-            <tbody>
-              {users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("buyer");}).map((user) => (
-                <tr key={user.id}>
-                  <td className='td'>
-                    {user.id}
-                  </td>
-                  <td className='td'>
-                    {user.firstName}
-                  </td>
-                  <td className='td'>
-                    {user.lastName}
-                  </td>
-                  <td className='td'>
-                    {user.email}
-                  </td>
-                  <td>Verified</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
-        </div>
-      </div>
+                <AddProduct/>
           </TabPanel>
           <TabPanel value={value} index={4}>
             Item Five

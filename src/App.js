@@ -72,7 +72,7 @@ function App() {
         </Route>
         <Route path='/userPage'>
           <UserPage/>
-        </Route>
+        </Route> 
         <Route path='/adminDashboard'>
           <AdminDashboard/>
         </Route>

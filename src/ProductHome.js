@@ -4,12 +4,13 @@ import ProductList from './ProductList';
 import Header from './Header';
 import ProductService from './ProductService';
 import ProductSearchBar from './ProductSearchBar';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import ProductFilter from './ProductFilter';
 import PriceRangeSelector from './PriceRangeSelector';
 
 const ProductHome = (props) => {
 
+  let history = useHistory();
   const [productList, setProductList] = useState([])
   const [products, setProducts] = useState([]);
   useEffect(()=>{

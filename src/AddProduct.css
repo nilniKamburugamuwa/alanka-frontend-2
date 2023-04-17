@@ -1,0 +1,119 @@
+.addProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:fit-content;
+    background-color: white;
+    padding-bottom: 50px;
+}
+
+.register__logo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    object-fit: contain;
+    width: 200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.addProduct__container{
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 20px;
+}
+
+.addProduct__container > h1{
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.addProduct__container > form > h5{
+    margin-bottom: 5px;
+}
+
+.addProduct__container > form > input{
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 98%;
+}
+
+.addProduct__container > p{
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.register__radioButton{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.addProduct__form > button{
+    background: #f0c14b;
+    border-radius: 2px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+}
+
+/* .addProduct__form > button{
+    border-radius: 2px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: darkgrey;
+} */
+
+.register__error{
+    color: red;
+    margin-bottom: 10px;
+}
+
+.register__phone{
+    display: flex;
+    justify-content:space-between;
+}
+
+.register__phone > input{
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 50px;
+    margin-left: 10px;
+}
+
+.register__phone > h5{
+    margin-top: 5px;
+}
+
+.register__phone > p{
+    margin-top: 5px;
+}
+
+.register__phoneLabel{
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.register__phone__tooltip{
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+img{
+    height: 300px;
+    width: 300px;
+    object-fit: contain;
+}

@@ -19,15 +19,15 @@ const Blog = () => {
     })
   },[]) 
   const { id } = useParams();
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog] = useState(); 
 
 
   useEffect(() => {
-    let blog = blogList.find((blog) => blog.blogId === parseInt(id));
-    if (blog) {
-      setBlog(blog);
+    const selectedBlog = blogList.find((blog) => blog.blogId === parseInt(id));
+    if (selectedBlog) {
+      setBlog(selectedBlog);
     }
-  }, []); 
+  }, [blogList, id]);  
 
   return (
     <div className='blog'>
