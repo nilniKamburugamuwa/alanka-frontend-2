@@ -40,7 +40,7 @@ function RegisterSeller() {
                 setEmail("");
                 setPassword("");
                 setConfirmPassword("");
-                history.push("/home");
+                history.push("/sellerDashboard");
             }
             catch(err){
                 alert("User Registation Failed");

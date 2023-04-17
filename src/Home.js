@@ -7,8 +7,38 @@ import Product from './Product'
 import ProductList from './ProductList'
 import ProductService from './ProductService'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
+import { GetCurrentUser } from './GetCurrentUser'
 
 function Home() {
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          console.log(GetCurrentUser());
+          const token = JSON.parse(localStorage.getItem('user'));
+          console.log(token.token)
+          const response = await axios.get('http://localhost:8082/api/v1/auth/user', {
+            headers: {
+              Authorization: `Bearer ${token.token}$`
+            },
+          });
+          setUser(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+  
+      fetchData();
+    }, []);
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+      setShowPopup(true);
+    }, []);
 
     const product = {
         id: 1234,
@@ -20,6 +50,20 @@ function Home() {
 
   return (
     <>
+        <div>
+      {user ? (
+        <div>
+      {showPopup && (
+        <div className="popup">
+          <p>Successfully logged in with email: <strong>{user.username}</strong> </p>
+          <button onClick={() => setShowPopup(false)}>X</button>
+        </div>
+      )}
+        </div>
+      ) : (
+        <p>Please log in</p>
+      )}
+    </div>
         <Header/>
     <div className='home'>
 

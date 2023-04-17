@@ -10,10 +10,11 @@ function UserPage() {
     async function fetchData() {
       try {
         console.log(GetCurrentUser());
-        const token = localStorage.getItem('user');
-        const response = await axios.get('http://localhost:8082/api/user', {
+        const token = JSON.parse(localStorage.getItem('user'));
+        console.log(token.token)
+        const response = await axios.get('http://localhost:8082/api/v1/auth/user', {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token.token}$`
           },
         });
         setUser(response.data);
@@ -29,8 +30,8 @@ function UserPage() {
     <div>
       {user ? (
         <div>
-          <p>Welcome, {user.firstName}!</p>
-          <p>Email: {user.email}</p>
+          <p>Welcome, {user.username}!</p>
+          <p>Email: {JSON.stringify(user)}</p>
         </div>
       ) : (
         <p>Please log in</p>

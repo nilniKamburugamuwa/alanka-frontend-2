@@ -37,7 +37,7 @@ function RegisterBuyer() {
                 setEmail("");
                 setPassword("");
                 setConfirmPassword("");
-                history.push("/userPage");
+                history.push("/login");
             }
             catch(err){
                 alert("User Registation Failed");

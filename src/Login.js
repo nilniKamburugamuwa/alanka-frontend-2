@@ -73,7 +73,7 @@ function Login() {
                     })
                     
                 )
-                history.push("/userPage");
+                history.push("/");
                 getUserName();
             }).catch(error=>{
                 console.log(error)

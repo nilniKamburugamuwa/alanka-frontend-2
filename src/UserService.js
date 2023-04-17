@@ -6,6 +6,10 @@ class UserService{
     getAllUsers(){
         return axios.get(USER_URL)
     }
+
+    getUser(email){
+        return axios.get(`http://localhost:8082/api/user/get/${email}`)
+    }
 }
 
 export default new UserService()
