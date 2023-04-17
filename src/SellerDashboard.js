@@ -157,11 +157,12 @@ export default function SellerDashboard(){
         <div className='userTable'>
           <table>
             <thead>
-              <th>User Id</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Status</th>
+              <th>Product Id</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Stock</th>
             </thead>
             <tbody>
               {users.filter((user)=>{return type.toLowerCase() === "" ? user : user.type.toLowerCase().includes("seller");}).map((user) => (

@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useStateValue } from './StateProvider';
+import { GetCurrentUser } from './GetCurrentUser';
+import axios from 'axios';
 
 function Header() {
 
-  const [{basket}, dispatch] = useStateValue();
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        console.log(GetCurrentUser());
+        const token = JSON.parse(localStorage.getItem('user'));
+        console.log(token.token)
+        const response = await axios.get('http://localhost:8082/api/v1/auth/user', {
+          headers: {
+            Authorization: `Bearer ${token.token}$`
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const [{basket}, dispatch] = useStateValue();
+  const history=useHistory();
   return (
     <div className='header'>
       <Link to="/">
@@ -50,12 +73,35 @@ function Header() {
       </div>
 
       <div className='header__nav'>
-        <Link to='/login'>
+
+
+        {user ? (
+          <Link to='/userProfile'>
+            <div className='header__option'>
+              <span className='header__optionLineOne'>Your</span>
+              <span className='header__optionLineTwo'>Profile</span>
+            </div>
+          </Link>
+          ) : (
+          <Link to='/login'>
+            <div className='header__option'>
+              <span className='header__optionLineOne'>Hello Guest</span>
+              <span className='header__optionLineTwo'>Sign In</span>
+            </div>
+          </Link>
+        )}
+
+        {user ? (
+          <Link to='/request'>
           <div className='header__option'>
-            <span className='header__optionLineOne'>Hello Guest</span>
-            <span className='header__optionLineTwo'>Sign In</span>
+            <span className='header__optionLineOne'>Post Product</span>
+            <span className='header__optionLineTwo'>Request</span>
           </div>
-        </Link>
+          </Link>
+          ) : (
+          <></>
+        )}
+
 
           <div className='header__option'>
             <span className='header__optionLineOne'>Returns</span>

@@ -20,6 +20,8 @@ function AddProduct() {
     };
     reader.readAsDataURL(file);
   };
+
+  
   async function handleSubmit(event){
     event.preventDefault();
         try{
@@ -70,7 +72,7 @@ function AddProduct() {
         {image && (
           <div className='product__image'>
             <h2>Preview</h2>
-            <img src={image} alt="preview" />
+            <img className='addProduct__image' src={image} alt="preview" />
           </div>
         )}
 
