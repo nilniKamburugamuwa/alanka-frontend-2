@@ -35,6 +35,7 @@ function GetVerified() {
   
   async function handleSubmit(event){
     event.preventDefault();
+
         try{
 /*             await axios.post("http://localhost:8082/api/product/save",{
                 name: name,
@@ -46,6 +47,7 @@ function GetVerified() {
             }); */
 
             alert("Verification request sent!");
+            event.target.reset();
             setImage1(null);
             setImage2(null);
         } catch(err){
@@ -66,8 +68,7 @@ function GetVerified() {
         <input type="file" onChange={handleImage1Change} />
         {image1 && (
           <div className='product__image'>
-            <h2>Preview</h2>
-            <img className='addProduct__image' src={image1} alt="preview" />
+            <img className='addProduct__image' src={image1} />
           </div>
         )}
 
@@ -75,8 +76,7 @@ function GetVerified() {
         <input type="file" onChange={handleImage2Change} />
         {image2 && (
           <div className='product__image'>
-            <h2>Preview</h2>
-            <img className='addProduct__image' src={image2} alt="preview" />
+            <img className='addProduct__image' src={image2} />
           </div>
         )}
 

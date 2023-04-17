@@ -24,6 +24,7 @@ import SellerProfile from './SellerProfile';
 import RegisterSeller from './RegisterSeller';
 import RegisterBuyer from './RegisterBuyer';
 import Login2 from './Login2';
+import UserProfile from './UserProfile';
 
 function App() {
 
@@ -37,11 +38,8 @@ function App() {
     <Router>
     <div className="app">
       <Switch>
-        <Route path='/home2'>
-          <Home2/>
-        </Route>
-        <Route path='/login2'>
-          <Login2/>
+      <Route path='/userProfile'>
+          <UserProfile/>
         </Route>
         <Route path='/RegisterSeller'>
           <RegisterSeller/>
