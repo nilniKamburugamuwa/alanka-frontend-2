@@ -14,6 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import SellerProfile from './SellerProfile';
 import AddProduct from './AddProduct';
+import GetVerified from './GetVerified';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -118,6 +119,7 @@ export default function SellerDashboard(){
             <Tab label="Shop" {...a11yProps(2)} />
             <Tab label="Add Product" {...a11yProps(3)} />
             <Tab label="Get Verified" {...a11yProps(4)} />
+            <Tab label="Buyer Requests" {...a11yProps(5)} />
           </Tabs>
           <div className='panelContainer'>
           <TabPanel className="tablePanel" value={value} index={0}>
@@ -192,10 +194,10 @@ export default function SellerDashboard(){
                 <AddProduct/>
           </TabPanel>
           <TabPanel value={value} index={4}>
-            Item Five
+          <GetVerified/>
           </TabPanel>
           <TabPanel value={value} index={5}>
-            Item Six
+
           </TabPanel>
           </div>
         </Box>
